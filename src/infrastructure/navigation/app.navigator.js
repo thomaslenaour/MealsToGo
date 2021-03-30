@@ -6,6 +6,7 @@ import { NavigationContainer } from '@react-navigation/native'
 
 import { RestaurantsNavigator } from './restaurants.navigator'
 import { SafeArea } from '../../components/utility/safe-area'
+import { MapScreen } from '../../features/map/screens/map'
 
 const Tab = createBottomTabNavigator()
 
@@ -16,12 +17,6 @@ const TAB_ICON = {
 }
 
 const SettingsView = () => (
-  <SafeArea>
-    <Text>Settings View</Text>
-  </SafeArea>
-)
-
-const MapsView = () => (
   <SafeArea>
     <Text>Settings View</Text>
   </SafeArea>
@@ -52,7 +47,7 @@ export const AppNavigator = () => (
       }}
     >
       <Tab.Screen name="Restaurants" component={RestaurantsNavigator} />
-      <Tab.Screen name="Map" component={MapsView} />
+      <Tab.Screen name="Map" component={MapScreen} />
       <Tab.Screen name="Settings" component={SettingsView} />
     </Tab.Navigator>
   </NavigationContainer>
