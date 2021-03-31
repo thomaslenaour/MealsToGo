@@ -7,6 +7,7 @@ import { theme } from './src/infrastructure/theme'
 import { RestaurantsContextProvider } from './src/services/restaurants/restaurant.context'
 import { LocationContextProvider } from './src/services/location/location.context'
 import { FavouritesContextProvider } from './src/services/favourites/favourites.context'
+import { AuthenticationContextProvider } from './src/services/authentication/authentication.context'
 
 import {
   useFonts as useOswald,
@@ -26,13 +27,15 @@ export default function App() {
     <>
       <ExpoStatusBar style="auto" />
       <ThemeProvider theme={theme}>
-        <FavouritesContextProvider>
-          <LocationContextProvider>
-            <RestaurantsContextProvider>
-              <Navigation />
-            </RestaurantsContextProvider>
-          </LocationContextProvider>
-        </FavouritesContextProvider>
+        <AuthenticationContextProvider>
+          <FavouritesContextProvider>
+            <LocationContextProvider>
+              <RestaurantsContextProvider>
+                <Navigation />
+              </RestaurantsContextProvider>
+            </LocationContextProvider>
+          </FavouritesContextProvider>
+        </AuthenticationContextProvider>
       </ThemeProvider>
     </>
   )
