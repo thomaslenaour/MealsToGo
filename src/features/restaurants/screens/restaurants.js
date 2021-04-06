@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react'
 import styled from 'styled-components/native'
-import { FlatList, TouchableOpacity } from 'react-native'
+import { TouchableOpacity } from 'react-native'
 import { ActivityIndicator, Colors } from 'react-native-paper'
 
 import { Search } from '../components/search'
@@ -10,12 +10,8 @@ import { Spacer } from '../../../components/spacer/spacer'
 import { FavouritesBar } from '../../../components/favourites/favourites-bar'
 import { RestaurantsContext } from '../../../services/restaurants/restaurant.context'
 import { FavouritesContext } from '../../../services/favourites/favourites.context'
-
-const RestaurantsList = styled(FlatList).attrs({
-  contentContainerStyle: {
-    padding: 16,
-  },
-})``
+import { RestaurantsList } from '../components/restaurant-list.styles'
+import { FadeInView } from '../../../components/animations/fade.animation'
 
 const LoadingBox = styled.View`
   position: absolute;
@@ -53,15 +49,17 @@ export const RestaurantsScreen = ({ navigation }) => {
       <RestaurantsList
         data={restaurants}
         renderItem={({ item }) => (
-          <TouchableOpacity
-            onPress={() =>
-              navigation.navigate('RestaurantDetail', { restaurant: item })
-            }
-          >
-            <Spacer position="bottom" size="large">
-              <RestaurantInfoCard restaurant={item} />
-            </Spacer>
-          </TouchableOpacity>
+          <FadeInView>
+            <TouchableOpacity
+              onPress={() =>
+                navigation.navigate('RestaurantDetail', { restaurant: item })
+              }
+            >
+              <Spacer position="bottom" size="large">
+                <RestaurantInfoCard restaurant={item} />
+              </Spacer>
+            </TouchableOpacity>
+          </FadeInView>
         )}
         keyExtractor={(restaurant) => restaurant.name}
       />
